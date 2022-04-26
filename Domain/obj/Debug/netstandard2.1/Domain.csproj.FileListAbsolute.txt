@@ -1,0 +1,9 @@
+/home/mustafakanli/Downloads/backend/Domain/bin/Debug/netstandard2.1/Domain.deps.json
+/home/mustafakanli/Downloads/backend/Domain/bin/Debug/netstandard2.1/Domain.dll
+/home/mustafakanli/Downloads/backend/Domain/bin/Debug/netstandard2.1/Domain.pdb
+/home/mustafakanli/Downloads/backend/Domain/obj/Debug/netstandard2.1/Domain.AssemblyInfoInputs.cache
+/home/mustafakanli/Downloads/backend/Domain/obj/Debug/netstandard2.1/Domain.AssemblyInfo.cs
+/home/mustafakanli/Downloads/backend/Domain/obj/Debug/netstandard2.1/Domain.csproj.CoreCompileInputs.cache
+/home/mustafakanli/Downloads/backend/Domain/obj/Debug/netstandard2.1/Domain.dll
+/home/mustafakanli/Downloads/backend/Domain/obj/Debug/netstandard2.1/Domain.pdb
+/home/mustafakanli/Downloads/backend/Domain/obj/Debug/netstandard2.1/Domain.csprojAssemblyReference.cache
