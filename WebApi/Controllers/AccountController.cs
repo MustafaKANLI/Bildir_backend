@@ -6,12 +6,13 @@ using Application.DTOs.Account;
 using Application.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Application.Features.Communities.Commands.CreateCommunity;
 
 namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AccountController : ControllerBase
+    public class AccountController : BaseApiController
     {
         private readonly IAccountService _accountService;
         public AccountController(IAccountService accountService)
@@ -28,6 +29,18 @@ namespace WebApi.Controllers
         {
             var origin = Request.Headers["origin"];
             return Ok(await _accountService.RegisterAsync(request, origin));
+        }
+        [HttpPost("register-community")]
+        public async Task<IActionResult> RegisterCommunityAsync(CommunityRegisterRequest request)
+        {
+          var origin = Request.Headers["origin"];
+          return Ok(await _accountService.RegisterCommunityAsync(request, origin, Mediator));
+        }
+        [HttpPost("create-community")]
+        public async Task<IActionResult> CreateCommunityAsync(CommunityCreateRequest request)
+        {
+          var origin = Request.Headers["origin"];
+          return Ok(await _accountService.CreateCommunityAsync(request, origin, Mediator));
         }
         [HttpGet("confirm-email")]
         public async Task<IActionResult> ConfirmEmailAsync([FromQuery]string userId, [FromQuery]string code)

@@ -9,6 +9,7 @@ namespace Application.Enums
         SuperAdmin,
         Admin,
         Moderator,
-        Basic
+        Basic,
+        Community
     }
 }

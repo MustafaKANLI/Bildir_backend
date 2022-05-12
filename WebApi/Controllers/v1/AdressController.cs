@@ -20,6 +20,7 @@ namespace WebApi.Controllers.v1
     {
         // GET: api/<controller>
         [HttpGet]
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> Get([FromQuery] GetAllAddressesParameter filter)
         {
 

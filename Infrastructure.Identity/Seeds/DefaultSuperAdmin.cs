@@ -36,7 +36,6 @@ namespace Infrastructure.Identity.Seeds
                     await userManager.AddToRoleAsync(defaultUser, Roles.Admin.ToString());
                     await userManager.AddToRoleAsync(defaultUser, Roles.SuperAdmin.ToString());
                 }
-
             }
         }
     }

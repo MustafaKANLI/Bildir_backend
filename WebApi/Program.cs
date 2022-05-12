@@ -54,6 +54,7 @@ namespace WebApi
                     var projectRepository = services.GetRequiredService<IProjectRepositoryAsync>();
 
                     var contactRepository = services.GetRequiredService<IContactRepositoryAsync>();
+                    var communityRepository = services.GetRequiredService<ICommunityRepositoryAsync>();
 
                     var announcementRepository = services.GetRequiredService<IAnnouncementRepositoryAsync>();
                     var personnelRepository = services.GetRequiredService<IPersonnelRepositoryAsync>();
@@ -67,6 +68,7 @@ namespace WebApi
                     await Infrastructure.Persistence.Seeds.DefaultEducations.SeedAsync(educationRepository);
                     await Infrastructure.Persistence.Seeds.DefaultProjects.SeedAsync(projectRepository);
                     await Infrastructure.Persistence.Seeds.DefaultContacts.SeedAsync(contactRepository);
+                    await Infrastructure.Persistence.Seeds.DefaultCommunities.SeedAsync(communityRepository);
 
 
                     await Infrastructure.Persistence.Seeds.DefaultAnnouncements.SeedAsync(announcementRepository);

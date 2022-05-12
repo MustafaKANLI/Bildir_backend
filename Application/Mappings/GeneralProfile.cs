@@ -43,12 +43,22 @@ using Application.Features.Announcements.Commands.CreateAnnouncement;
 using Application.Features.Announcements.Queries.GetAllAnnouncements;
 using Application.Features.Announcements.Commands.UpdateAnnouncement;
 
+//community
+using Application.Features.Communities.Commands.CreateCommunity;
+using Application.Features.Communities.Commands.UpdateCommunity;
+using Application.Features.Communities.Queries.GetAllCommunities;
+
 namespace Application.Mappings
 {
     public class GeneralProfile : Profile
     {
         public GeneralProfile()
         {
+            CreateMap<CreateCommunityCommand, Community>();
+            CreateMap<Community, GetAllCommunitiesViewModel>().ReverseMap();
+            CreateMap<UpdateCommunityCommand, Community>();
+            CreateMap<GetAllCommunitiesQuery, GetAllCommunitiesParameter>();
+          
             CreateMap<Product, GetAllProductsViewModel>().ReverseMap();
             CreateMap<CreateProductCommand, Product>();
             CreateMap<GetAllProductsQuery, GetAllProductsParameter>();
