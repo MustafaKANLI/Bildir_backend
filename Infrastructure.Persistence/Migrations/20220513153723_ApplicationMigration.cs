@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Infrastructure.Persistence.Migrations
 {
-    public partial class Test02 : Migration
+    public partial class ApplicationMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -50,6 +50,33 @@ namespace Infrastructure.Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Communities",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    Created = table.Column<DateTime>(nullable: false),
+                    LastModifiedBy = table.Column<string>(nullable: true),
+                    LastModified = table.Column<DateTime>(nullable: true),
+                    Active = table.Column<bool>(nullable: false),
+                    CreationKey = table.Column<string>(nullable: true),
+                    IsKeyUsed = table.Column<bool>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    ApplicationUserId = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    InstagramLink = table.Column<string>(nullable: true),
+                    TwitterLink = table.Column<string>(nullable: true),
+                    FacebookLink = table.Column<string>(nullable: true),
+                    LinkedinLink = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Communities", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -138,6 +165,30 @@ namespace Infrastructure.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Students",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    Created = table.Column<DateTime>(nullable: false),
+                    LastModifiedBy = table.Column<string>(nullable: true),
+                    LastModified = table.Column<DateTime>(nullable: true),
+                    Active = table.Column<bool>(nullable: false),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    ApplicationUserId = table.Column<string>(nullable: true),
+                    SchoolEmail = table.Column<string>(nullable: true),
+                    Faculty = table.Column<string>(nullable: true),
+                    Department = table.Column<string>(nullable: true),
+                    Gender = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Students", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "WorkHistory",
                 columns: table => new
                 {
@@ -216,6 +267,30 @@ namespace Infrastructure.Persistence.Migrations
                         principalTable: "Inventories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StudentCommunity",
+                columns: table => new
+                {
+                    StudentId = table.Column<int>(nullable: false),
+                    CommunityId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StudentCommunity", x => new { x.StudentId, x.CommunityId });
+                    table.ForeignKey(
+                        name: "FK_StudentCommunity_Communities_CommunityId",
+                        column: x => x.CommunityId,
+                        principalTable: "Communities",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_StudentCommunity_Students_StudentId",
+                        column: x => x.StudentId,
+                        principalTable: "Students",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -339,6 +414,11 @@ namespace Infrastructure.Persistence.Migrations
                 name: "IX_Products_InventoryId",
                 table: "Products",
                 column: "InventoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StudentCommunity_CommunityId",
+                table: "StudentCommunity",
+                column: "CommunityId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -368,6 +448,9 @@ namespace Infrastructure.Persistence.Migrations
                 name: "Projects");
 
             migrationBuilder.DropTable(
+                name: "StudentCommunity");
+
+            migrationBuilder.DropTable(
                 name: "WorkHistory");
 
             migrationBuilder.DropTable(
@@ -375,6 +458,12 @@ namespace Infrastructure.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "Inventories");
+
+            migrationBuilder.DropTable(
+                name: "Communities");
+
+            migrationBuilder.DropTable(
+                name: "Students");
 
             migrationBuilder.DropTable(
                 name: "Events");

@@ -49,6 +49,9 @@ namespace Infrastructure.Persistence
             services.AddTransient<IInventoryRepositoryAsync, InventoryRepositoryAsync>();
             services.AddTransient<IEventRepositoryAsync, EventRepositoryAsync>();
             services.AddTransient<ICommunityRepositoryAsync, CommunityRepositoryAsync>();
+            services.AddTransient<IStudentRepositoryAsync, StudentRepositoryAsync>();
+            services.AddTransient<IStudentCommunityRepositoryAsync, StudentCommunityRepositoryAsync>();
+
 
             #endregion
         }

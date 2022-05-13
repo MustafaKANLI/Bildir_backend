@@ -13,7 +13,7 @@ namespace Domain.Entities
     public string ApplicationUserId { get; set; }
     public string Email { get; set; }
     public string Description { get; set; }
-    //public ICollection<Student> Followers { get; set; }
+    public ICollection<StudentCommunity> Followers { get; set; }
     //public Image AvatarImage { get; set; }
     //public Image BackgroundImage { get; set; }
     public string? InstagramLink { get; set; }

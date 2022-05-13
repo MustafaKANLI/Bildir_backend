@@ -6,6 +6,7 @@ using MediatR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+
 namespace Application.Features.Communities.Commands.CreateCommunity
 {
   public class CreateCommunityCommand : IRequest<Response<int>>
@@ -17,11 +18,11 @@ namespace Application.Features.Communities.Commands.CreateCommunity
     public string Description { get; set; }
     public string Email { get; set; }
   }
-  public class CreatePersonnelCommandHandler : IRequestHandler<CreateCommunityCommand, Response<int>>
+  public class CreateCommunityCommandHandler : IRequestHandler<CreateCommunityCommand, Response<int>>
   {
     private readonly ICommunityRepositoryAsync _communityRepository;
     private readonly IMapper _mapper;
-    public CreatePersonnelCommandHandler(ICommunityRepositoryAsync communityRepository, IMapper mapper)
+    public CreateCommunityCommandHandler(ICommunityRepositoryAsync communityRepository, IMapper mapper)
     {
       _communityRepository = communityRepository;
       _mapper = mapper;

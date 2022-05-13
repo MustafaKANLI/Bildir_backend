@@ -5,6 +5,7 @@ using Application.Exceptions;
 using Application.Features.Communities.Commands.CreateCommunity;
 using Application.Features.Communities.Queries.GetCommunityByCreationKey;
 using Application.Features.Communities.Commands.UpdateCommunity;
+using Application.Features.Students.Commands.CreateStudent;
 using Application.Interfaces;
 using Application.Wrappers;
 using Domain.Settings;
@@ -23,6 +24,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+
 namespace Infrastructure.Identity.Services
 {
   public class AccountService : IAccountService
@@ -167,6 +169,54 @@ namespace Infrastructure.Identity.Services
       else
       {
         throw new ApiException($"Email {request.Email } is already registered.");
+      }
+    }
+
+    public async Task<Response<string>> RegisterStudentAsync(StudentRegisterRequest request, string origin, IMediator Mediator)
+    {
+
+      /*Check if mail is school mail*/
+      if(!request.SchoolEmail.EndsWith("akdeniz.edu.tr")) throw new ApiException($"Email adress is not valid");
+
+      var user = new ApplicationUser
+      {
+        Email = request.SchoolEmail,
+        UserName = request.SchoolEmail.ToLower().Trim().Replace(".", "").Replace("@", "").Replace("+", "")
+      };
+      var userWithSameEmail = await _userManager.FindByEmailAsync(request.SchoolEmail);
+      if (userWithSameEmail == null)
+      {
+        var result = await _userManager.CreateAsync(user, request.Password);
+        if (result.Succeeded)
+        {
+          await _userManager.AddToRoleAsync(user, Roles.Student.ToString());
+          var verificationUri = await SendVerificationEmail(user, origin);
+          //TODO: Attach Email Service here and configure it via appsettings
+          //await _emailService.SendAsync(new Application.DTOs.Email.EmailRequest() { From = "mail@codewithmukesh.com", To = user.Email, Body = $"Please confirm your account by visiting this URL {verificationUri}", Subject = "Confirm Registration" });
+
+          // Mediator update community
+          var createStudentResult = await Mediator.Send(new CreateStudentCommand
+          {
+            ApplicationUserId = user.Id,
+            FirstName = request.FirstName,
+            LastName = request.LastName,
+            Department = request.Department,
+            SchoolEmail = request.SchoolEmail,
+            Faculty = request.Faculty,
+            Gender = request.Gender
+          });
+
+          if (!createStudentResult.Succeeded) throw new ApiException($"Student could not be created");
+          return new Response<string>(user.Id, message: $"User Registered. Please confirm your account by visiting this URL {verificationUri}");
+        }
+        else
+        {
+          throw new ApiException($"{result.Errors}");
+        }
+      }
+      else
+      {
+        throw new ApiException($"Email {request.SchoolEmail } is already registered.");
       }
     }
 

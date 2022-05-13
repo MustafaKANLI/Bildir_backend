@@ -10,6 +10,7 @@ namespace Application.Enums
         Admin,
         Moderator,
         Basic,
-        Community
+        Community,
+        Student
     }
 }

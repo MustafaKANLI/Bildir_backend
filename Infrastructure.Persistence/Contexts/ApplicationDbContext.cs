@@ -24,6 +24,7 @@ namespace Infrastructure.Persistence.Contexts
             _authenticatedUser = authenticatedUser;
         }
         public DbSet<Community> Communities { get; set; }
+        public DbSet<Student> Students { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Address> Addresses { get; set; }
@@ -65,6 +66,17 @@ namespace Infrastructure.Persistence.Contexts
                 property.SetColumnType("decimal(18,6)");
             }
             base.OnModelCreating(builder);
-        }
+
+            builder.Entity<StudentCommunity>()
+                .HasKey(sc => new { sc.StudentId, sc.CommunityId });  
+            builder.Entity<StudentCommunity>()
+                .HasOne(sc => sc.Student)
+                .WithMany(s => s.FollowedCommunities)
+                .HasForeignKey(sc => sc.StudentId);  
+            builder.Entity<StudentCommunity>()
+                .HasOne(sc => sc.Community)
+                .WithMany(c => c.Followers)
+                .HasForeignKey(sc => sc.CommunityId);
+            }
     }
 }

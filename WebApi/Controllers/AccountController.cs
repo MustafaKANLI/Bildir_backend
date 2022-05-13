@@ -36,6 +36,12 @@ namespace WebApi.Controllers
           var origin = Request.Headers["origin"];
           return Ok(await _accountService.RegisterCommunityAsync(request, origin, Mediator));
         }
+        [HttpPost("register-student")]
+        public async Task<IActionResult> RegisterStudentAsync(StudentRegisterRequest request)
+        {
+          var origin = Request.Headers["origin"];
+          return Ok(await _accountService.RegisterStudentAsync(request, origin, Mediator));
+        }
         [HttpPost("create-community")]
         public async Task<IActionResult> CreateCommunityAsync(CommunityCreateRequest request)
         {

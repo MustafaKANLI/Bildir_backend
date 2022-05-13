@@ -14,6 +14,7 @@ namespace Application.Interfaces
         Task<Response<AuthenticationResponse>> AuthenticateAsync(AuthenticationRequest request, string ipAddress);
         Task<Response<string>> RegisterAsync(RegisterRequest request, string origin);
         Task<Response<string>> RegisterCommunityAsync(CommunityRegisterRequest request, string origin, IMediator Mediator);
+        Task<Response<string>> RegisterStudentAsync(StudentRegisterRequest request, string origin, IMediator Mediator);
         Task<Response<string>> CreateCommunityAsync(CommunityCreateRequest request, string origin, IMediator Mediator);
         Task<Response<string>> ConfirmEmailAsync(string userId, string code);
         Task ForgotPassword(ForgotPasswordRequest model, string origin);

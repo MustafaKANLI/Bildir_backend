@@ -29,7 +29,7 @@ namespace Application.Features.Communities.Queries.GetAllCommunities
     public async Task<PagedResponse<IEnumerable<GetAllCommunitiesViewModel>>> Handle(GetAllCommunitiesQuery request, CancellationToken cancellationToken)
     {
       var validFilter = _mapper.Map<GetAllCommunitiesParameter>(request);
-      var community = await _communityRepository.GetAllAsync();
+      var community = await _communityRepository.GetCommunitiesWithRelationsAsync(request.PageNumber, request.PageSize);
       var communityViewModel = _mapper.Map<IEnumerable<GetAllCommunitiesViewModel>>(community);
       return new PagedResponse<IEnumerable<GetAllCommunitiesViewModel>>(communityViewModel, validFilter.PageNumber, validFilter.PageSize);
     }

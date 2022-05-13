@@ -47,6 +47,12 @@ using Application.Features.Announcements.Commands.UpdateAnnouncement;
 using Application.Features.Communities.Commands.CreateCommunity;
 using Application.Features.Communities.Commands.UpdateCommunity;
 using Application.Features.Communities.Queries.GetAllCommunities;
+using Application.ViewModels.Community;
+
+//student
+using Application.Features.Students.Commands.CreateStudent;
+using Application.Features.Students.Queries.GetAllStudents;
+using Application.ViewModels.Student;
 
 namespace Application.Mappings
 {
@@ -54,10 +60,18 @@ namespace Application.Mappings
     {
         public GeneralProfile()
         {
+
+            CreateMap<CreateStudentCommand, Student>();
+            CreateMap<Student, GetAllStudentsViewModel>().ReverseMap();
+            //CreateMap<UpdateCommunityCommand, Community>();
+            CreateMap<GetAllStudentsQuery, GetAllStudentsParameter>();
+            CreateMap<Student, StudentViewModel>().ReverseMap();
+
             CreateMap<CreateCommunityCommand, Community>();
             CreateMap<Community, GetAllCommunitiesViewModel>().ReverseMap();
             CreateMap<UpdateCommunityCommand, Community>();
             CreateMap<GetAllCommunitiesQuery, GetAllCommunitiesParameter>();
+            CreateMap<Community, CommunityViewModel>().ReverseMap();
           
             CreateMap<Product, GetAllProductsViewModel>().ReverseMap();
             CreateMap<CreateProductCommand, Product>();

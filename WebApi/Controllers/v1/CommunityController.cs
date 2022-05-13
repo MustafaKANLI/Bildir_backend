@@ -4,7 +4,10 @@
 using Application.Features.Communities.Queries.GetAllCommunities;
 using Application.Features.Communities.Queries.GetCommunityByCreationKey;
 using Application.Features.Communities.Queries.GetCommunityById;
+using Application.Features.Communities.Queries.GetCommunityByApplicationUserId;
 using Application.Features.Communities.Commands.UpdateCommunity;
+using Application.Features.Communities.Commands.AddSocialMediaLinkToCommunity;
+
 //using Application.Features.Communities.Queries.GetAnnouncementById;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -35,6 +38,13 @@ namespace WebApi.Controllers.v1
       return Ok(await Mediator.Send(new GetCommunityByIdQuery { Id = id }));
     }
 
+    // GET api/<controller>
+    [HttpGet("CurrentlyLoggedIn")]
+    public async Task<IActionResult> Get()
+    {
+      return Ok(await Mediator.Send(new GetLoggedInCommunityQuery { }));
+    }
+
     // POST api/<controller>
     [HttpPost]
     //        [Authorize]
@@ -44,12 +54,12 @@ namespace WebApi.Controllers.v1
     }
 
     // POST api/<controller>
-    //[HttpPost("AddAddressToPersonnel")]
-    ////        [Authorize]
-    //public async Task<IActionResult> AddAddressToPersonnel(AddAddressToPersonnelCommand command)
-    //{
-    //  return Ok(await Mediator.Send(command));
-    //}
+    [HttpPost("AddSocialMediaLinkToCommunity")]
+    //        [Authorize]
+    public async Task<IActionResult> AddSocialMediaLinkToCommunity(AddSocialMediaLinkToPersonnelCommand command)
+    {
+      return Ok(await Mediator.Send(command));
+    }
 
 
     // PUT api/<controller>/5
