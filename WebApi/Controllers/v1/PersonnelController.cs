@@ -27,71 +27,71 @@ namespace WebApi.Controllers.v1
     public class PersonnelController : BaseApiController
     {
         // GET: api/<controller>
-        [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] GetAllPersonnelsParameter filter)
-        {
+        //[HttpGet]
+        //public async Task<IActionResult> Get([FromQuery] GetAllPersonnelsParameter filter)
+        //{
 
-            return Ok(await Mediator.Send(new GetAllPersonnelsQuery() { PageSize = filter.PageSize, PageNumber = filter.PageNumber }));
-        }
+        //    return Ok(await Mediator.Send(new GetAllPersonnelsQuery() { PageSize = filter.PageSize, PageNumber = filter.PageNumber }));
+        //}
 
-        // GET api/<controller>/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
-        {
-            return Ok(await Mediator.Send(new GetPersonnelByIdQuery { Id = id }));
-        }
+        //// GET api/<controller>/5
+        //[HttpGet("{id}")]
+        //public async Task<IActionResult> Get(int id)
+        //{
+        //    return Ok(await Mediator.Send(new GetPersonnelByIdQuery { Id = id }));
+        //}
 
-        // POST api/<controller>
-        [HttpPost]
-        //        [Authorize]
-        public async Task<IActionResult> Post(CreatePersonnelCommand command)
-        {
-            return Ok(await Mediator.Send(command));
-        }
+        //// POST api/<controller>
+        //[HttpPost]
+        ////        [Authorize]
+        //public async Task<IActionResult> Post(CreatePersonnelCommand command)
+        //{
+        //    return Ok(await Mediator.Send(command));
+        //}
 
-        // POST api/<controller>
-        [HttpPost("AddEducationToPersonnel")]
-        //        [Authorize]
-        public async Task<IActionResult> AddEducationToPersonnel(AddEducationToPersonnelCommand command)
-        {
-            return Ok(await Mediator.Send(command));
-        }
+        //// POST api/<controller>
+        //[HttpPost("AddEducationToPersonnel")]
+        ////        [Authorize]
+        //public async Task<IActionResult> AddEducationToPersonnel(AddEducationToPersonnelCommand command)
+        //{
+        //    return Ok(await Mediator.Send(command));
+        //}
 
-        // POST api/<controller>
-        [HttpPost("AddAddressToPersonnel")]
-        //        [Authorize]
-        public async Task<IActionResult> AddAddressToPersonnel(AddAddressToPersonnelCommand command)
-        {
-            return Ok(await Mediator.Send(command));
-        }
+        //// POST api/<controller>
+        //[HttpPost("AddAddressToPersonnel")]
+        ////        [Authorize]
+        //public async Task<IActionResult> AddAddressToPersonnel(AddAddressToPersonnelCommand command)
+        //{
+        //    return Ok(await Mediator.Send(command));
+        //}
 
-        // POST api/<controller>
-        [HttpPost("AddCertificateToPersonnel")]
-        //        [Authorize]
-        public async Task<IActionResult> AddCertificateToPersonnel(AddCertificateToPersonnelCommand command)
-        {
-            return Ok(await Mediator.Send(command));
-        }
+        //// POST api/<controller>
+        //[HttpPost("AddCertificateToPersonnel")]
+        ////        [Authorize]
+        //public async Task<IActionResult> AddCertificateToPersonnel(AddCertificateToPersonnelCommand command)
+        //{
+        //    return Ok(await Mediator.Send(command));
+        //}
 
 
-        // PUT api/<controller>/5
-        [HttpPut("{id}")]
-        //[Authorize]
-        public async Task<IActionResult> Put(int id, UpdatePersonnelCommand command)
-        {
-            if (id != command.Id)
-            {
-                return BadRequest();
-            }
-            return Ok(await Mediator.Send(command));
-        }
+        //// PUT api/<controller>/5
+        //[HttpPut("{id}")]
+        ////[Authorize]
+        //public async Task<IActionResult> Put(int id, UpdatePersonnelCommand command)
+        //{
+        //    if (id != command.Id)
+        //    {
+        //        return BadRequest();
+        //    }
+        //    return Ok(await Mediator.Send(command));
+        //}
 
-        // DELETE api/<controller>/5
-        [HttpDelete("{id}")]
-        //       [Authorize]
-        public async Task<IActionResult> Delete(int id)
-        {
-            return Ok(await Mediator.Send(new DeletePersonnelByIdCommand { Id = id }));
-        }
+        //// DELETE api/<controller>/5
+        //[HttpDelete("{id}")]
+        ////       [Authorize]
+        //public async Task<IActionResult> Delete(int id)
+        //{
+        //    return Ok(await Mediator.Send(new DeletePersonnelByIdCommand { Id = id }));
+        //}
     }
 }

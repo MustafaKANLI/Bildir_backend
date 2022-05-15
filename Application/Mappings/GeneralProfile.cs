@@ -58,6 +58,7 @@ using Application.Features.Students.Queries.GetLoggedInStudent;
 using Application.Features.Events.Queries.GetAllEvents;
 using Application.Features.Events.Queries.GetEventById;
 using Application.Features.Events.Commands.CreateEvent;
+using Application.Features.Events.Commands.UpdateEvent;
 
 namespace Application.Mappings
 {
@@ -91,7 +92,7 @@ namespace Application.Mappings
 
             CreateMap<Event, GetAllEventsViewModel>().ReverseMap();
             CreateMap<CreateEventCommand, Event>();
-            //CreateMap<UpdateEventCommand, Event>();
+            CreateMap<UpdateEventCommand, Event>();
             CreateMap<GetAllEventsQuery, GetAllEventsParameter>();
             CreateMap<Event, GetEventByIdViewModel>();
             CreateMap<Event, GetAllStudentsEventViewModel>();

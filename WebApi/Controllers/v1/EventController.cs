@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Application.Features.Events.Commands.CreateEvent;
+using Application.Features.Events.Commands.CancelEvent;
+using Application.Features.Events.Commands.EndEvent;
+using Application.Features.Events.Commands.UpdateEvent;
 using Application.Features.Events.Queries.GetAllEvents;
 using Application.Features.Events.Queries.GetEventById;
 using Application.Filters;
@@ -38,6 +41,22 @@ namespace WebApi.Controllers.v1
     {
       return Ok(await Mediator.Send(command));
     }
+    
+    //// POST api/<controller>/5
+    [HttpPost("CancelEvent")]
+    //        [Authorize]
+    public async Task<IActionResult> CancelEvent(CancelEventCommand command)
+    {
+      return Ok(await Mediator.Send(command));
+    }
+
+    //// POST api/<controller>/5
+    [HttpPost("EndEvent")]
+    //        [Authorize]
+    public async Task<IActionResult> EndEvent(EndEventCommand command)
+    {
+      return Ok(await Mediator.Send(command));
+    }
 
     //// POST api/<controller>
     //[HttpPost("AddAddressToEvent")]
@@ -55,17 +74,17 @@ namespace WebApi.Controllers.v1
     //    return Ok(await Mediator.Send(command));
     //}
 
-    //// PUT api/<controller>/5
-    //[HttpPut("{id}")]
-    ////[Authorize]
-    //public async Task<IActionResult> Put(int id, UpdateEventCommand command)
-    //{
-    //    if (id != command.Id)
-    //    {
-    //        return BadRequest();
-    //    }
-    //    return Ok(await Mediator.Send(command));
-    //}
+    // PUT api/<controller>/5
+    [HttpPut("{id}")]
+    //[Authorize]
+    public async Task<IActionResult> Put(int id, UpdateEventCommand command)
+    {
+      if (id != command.Id)
+      {
+        return BadRequest();
+      }
+      return Ok(await Mediator.Send(command));
+    }
 
     //// DELETE api/<controller>/5
     //[HttpDelete("{id}")]

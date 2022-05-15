@@ -26,6 +26,14 @@ namespace Infrastructure.Persistence.Repositories
         .SingleOrDefaultAsync(x => x.StudentId == studentId && x.EventId == eventId);
     }
 
+    public async Task<IEnumerable<StudentEvent>> GetStudentEventsByEventIdAsync(int eventId)
+    {
+      return await _studentEvents
+        .Where(se => se.EventId == eventId)
+        .AsTracking()
+        .ToListAsync();
+    }
+
     //public async Task<EventParticipation> GetEventParticipationByApplicationUserIdAsync(string applicationUserId)
     //{
     //  return await _students

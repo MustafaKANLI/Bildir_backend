@@ -19,55 +19,55 @@ namespace WebApi.Controllers.v1
     public class InventoryController : BaseApiController
     {
         // GET: api/<controller>
-        [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] GetAllInventoriesParameter filter)
-        {
+        //[HttpGet]
+        //public async Task<IActionResult> Get([FromQuery] GetAllInventoriesParameter filter)
+        //{
 
-            return Ok(await Mediator.Send(new GetAllInventoriesQuery() { PageSize = filter.PageSize, PageNumber = filter.PageNumber }));
-        }
+        //    return Ok(await Mediator.Send(new GetAllInventoriesQuery() { PageSize = filter.PageSize, PageNumber = filter.PageNumber }));
+        //}
 
-        // GET api/<controller>/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
-        {
-            return Ok(await Mediator.Send(new GetInventoryByIdQuery { Id = id }));
-        }
+        //// GET api/<controller>/5
+        //[HttpGet("{id}")]
+        //public async Task<IActionResult> Get(int id)
+        //{
+        //    return Ok(await Mediator.Send(new GetInventoryByIdQuery { Id = id }));
+        //}
 
-        // POST api/<controller>
-        [HttpPost]
-        //        [Authorize]
-        public async Task<IActionResult> Post(CreateInventoryCommand command)
-        {
-            return Ok(await Mediator.Send(command));
-        }
+        //// POST api/<controller>
+        //[HttpPost]
+        ////        [Authorize]
+        //public async Task<IActionResult> Post(CreateInventoryCommand command)
+        //{
+        //    return Ok(await Mediator.Send(command));
+        //}
 
 
-        // POST api/<controller>
-        [HttpPost("AddProductToInventory")]
-        //        [Authorize]
-        public async Task<IActionResult> AddProductToInventory(AddProductToInventoryCommand command)
-        {
-            return Ok(await Mediator.Send(command));
-        }
+        //// POST api/<controller>
+        //[HttpPost("AddProductToInventory")]
+        ////        [Authorize]
+        //public async Task<IActionResult> AddProductToInventory(AddProductToInventoryCommand command)
+        //{
+        //    return Ok(await Mediator.Send(command));
+        //}
 
-        // PUT api/<controller>/5
-        [HttpPut("{id}")]
-        //[Authorize]
-        public async Task<IActionResult> Put(int id, UpdateInventoryCommand command)
-        {
-            if (id != command.Id)
-            {
-                return BadRequest();
-            }
-            return Ok(await Mediator.Send(command));
-        }
+        //// PUT api/<controller>/5
+        //[HttpPut("{id}")]
+        ////[Authorize]
+        //public async Task<IActionResult> Put(int id, UpdateInventoryCommand command)
+        //{
+        //    if (id != command.Id)
+        //    {
+        //        return BadRequest();
+        //    }
+        //    return Ok(await Mediator.Send(command));
+        //}
 
-        // DELETE api/<controller>/5
-        [HttpDelete("{id}")]
-        //       [Authorize]
-        public async Task<IActionResult> Delete(int id)
-        {
-            return Ok(await Mediator.Send(new DeleteInventoryByIdCommand { Id = id }));
-        }
+        //// DELETE api/<controller>/5
+        //[HttpDelete("{id}")]
+        ////       [Authorize]
+        //public async Task<IActionResult> Delete(int id)
+        //{
+        //    return Ok(await Mediator.Send(new DeleteInventoryByIdCommand { Id = id }));
+        //}
     }
 }

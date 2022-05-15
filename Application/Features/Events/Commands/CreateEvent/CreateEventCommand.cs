@@ -3,6 +3,7 @@ using Application.Interfaces.Repositories;
 using Application.Wrappers;
 using AutoMapper;
 using Domain.Entities;
+using Domain.Enums;
 using MediatR;
 using System;
 using System.Threading;
@@ -37,6 +38,7 @@ namespace Application.Features.Events.Commands.CreateEvent
       if (community == null) throw new ApiException("Community not found");
 
       var eventObj = _mapper.Map<Event>(request);
+      eventObj.State = EventStates.Active;
 
       await _eventRepository.AddAsync(eventObj);
       return new Response<int>(eventObj.Id);

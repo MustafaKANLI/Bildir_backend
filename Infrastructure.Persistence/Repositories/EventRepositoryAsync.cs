@@ -40,5 +40,12 @@ namespace Infrastructure.Persistence.Repositories
                 .AsNoTracking()
                 .ToListAsync();
         }
+
+        public async Task<Event> GetEventByIdWithCommunityAsync(int eventId) 
+        { 
+            return await _events
+              .Include(e => e.Community)
+              .SingleOrDefaultAsync(e => e.Id == eventId);
+        }
     }
 }
