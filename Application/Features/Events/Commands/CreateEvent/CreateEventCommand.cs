@@ -1,4 +1,5 @@
-﻿using Application.Interfaces.Repositories;
+﻿using Application.Exceptions;
+using Application.Interfaces.Repositories;
 using Application.Wrappers;
 using AutoMapper;
 using Domain.Entities;
@@ -9,30 +10,36 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Events.Commands.CreateEvent
 {
-    public partial class CreateEventCommand: IRequest<Response<int>>
+  public class CreateEventCommand : IRequest<Response<int>>
+  {
+    public string Title { get; set; }
+    public string Description { get; set; }
+    public string Location { get; set; }
+    public string Tags { get; set; }
+    public int CommunityId { get; set; }
+    public DateTime Date { get; set; }
+  }
+  public class CreateEventCommandHandler : IRequestHandler<CreateEventCommand, Response<int>>
+  {
+    private readonly IEventRepositoryAsync _eventRepository;
+    private readonly ICommunityRepositoryAsync _communityRepository;
+    private readonly IMapper _mapper;
+    public CreateEventCommandHandler(IEventRepositoryAsync eventRepository, ICommunityRepositoryAsync communityRepository, IMapper mapper)
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public DateTime BeginDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public string State { get; set; }
+      _eventRepository = eventRepository;
+      _communityRepository = communityRepository;
+      _mapper = mapper;
     }
 
-    public class CreateEventCommandHandler : IRequestHandler<CreateEventCommand, Response<int>>
+    public async Task<Response<int>> Handle(CreateEventCommand request, CancellationToken cancellationToken)
     {
-        private readonly IEventRepositoryAsync _eventRepository;
-        private readonly IMapper _mapper;
-        public CreateEventCommandHandler(IEventRepositoryAsync eventRepository, IMapper mapper)
-        {
-            _eventRepository = eventRepository;
-            _mapper = mapper;
-        }
+      var community = await _communityRepository.GetByIdAsync(request.CommunityId);
+      if (community == null) throw new ApiException("Community not found");
 
-        public async Task<Response<int>> Handle(CreateEventCommand request, CancellationToken cancellationToken)
-        {
-            var _event = _mapper.Map<Event>(request);
-            await _eventRepository.AddAsync(_event);
-            return new Response<int>(_event.Id);
-        }
+      var eventObj = _mapper.Map<Event>(request);
+
+      await _eventRepository.AddAsync(eventObj);
+      return new Response<int>(eventObj.Id);
     }
+  }
 }

@@ -8,20 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using Application.ViewModels.Community;
 using AutoMapper;
-using Application.Features.Students.Queries.GetAllStudents;
 
 namespace Infrastructure.Persistence.Repositories
 {
   public class StudentRepositoryAsync : GenericRepositoryAsync<Student>, IStudentRepositoryAsync
   {
     private readonly DbSet<Student> _students;
-    private readonly IMapper _mapper;
-    public StudentRepositoryAsync(ApplicationDbContext dbContext, IMapper mapper) : base(dbContext)
+    public StudentRepositoryAsync(ApplicationDbContext dbContext) : base(dbContext)
     {
       _students = dbContext.Set<Student>();
-      _mapper = mapper;
     }
 
     public async Task<Student> GetStudentByApplicationUserIdAsync(string applicationUserId)
@@ -30,48 +26,37 @@ namespace Infrastructure.Persistence.Repositories
         .SingleOrDefaultAsync(x => x.ApplicationUserId == applicationUserId);
     }
 
-    public async Task<Student> GetStudentByIdAsync(int id)
+    public async Task<Student> GetStudentByIdWithRelationsAsync(int id)
     {
       return await _students
+        .Include(s => s.Communities)
+        .ThenInclude(sc => sc.Community)
+        .Include(s => s.Events)
+        .ThenInclude(se => se.Event)
         .SingleOrDefaultAsync(x => x.Id == id);
     }
 
-    public async Task<GetAllStudentsViewModel> GetStudentByApplicationUserIdWithRelationsAsync(string applicationUserId)
+    public async Task<Student> GetStudentByApplicationUserIdWithRelationsAsync(string applicationUserId)
     {
       return await _students
-        .Where(x => x.ApplicationUserId == applicationUserId)
-        .Select(x => new GetAllStudentsViewModel
-        {
-          FirstName = x.FirstName,
-          LastName = x.LastName,
-          SchoolEmail = x.SchoolEmail,
-          Gender = x.Gender,
-          Faculty = x.Faculty,
-          Department = x.Department,
-          ApplicationUserId = x.ApplicationUserId,
-          FollowedCommunities = x.FollowedCommunities.Select(sc => _mapper.Map<CommunityViewModel>(sc.Community)).ToList()
-        })
-        .SingleOrDefaultAsync();
+        .Include(x => x.Communities)
+        .ThenInclude(sc => sc.Community)
+        .Include(s => s.Events)
+        .ThenInclude(se => se.Event)
+        .SingleOrDefaultAsync(s => s.ApplicationUserId == applicationUserId);
     }
 
-    public async Task<IReadOnlyList<GetAllStudentsViewModel>> GetStudentsWithRelationsAsync(int pageNumber, int pageSize)
+    public async Task<IReadOnlyList<Student>> GetStudentsWithRelationsAsync(int pageNumber, int pageSize)
     {
       return await _students
-          .Select(x => new GetAllStudentsViewModel
-            {
-              FirstName = x.FirstName,
-              LastName = x.LastName,
-              SchoolEmail = x.SchoolEmail,
-              Gender = x.Gender,
-              Faculty = x.Faculty,
-              Department = x.Department,
-              ApplicationUserId = x.ApplicationUserId,
-              FollowedCommunities = x.FollowedCommunities.Select(sc => _mapper.Map<CommunityViewModel>(sc.Community)).ToList()
-            })
-          .Skip((pageNumber - 1) * pageSize)
-          .Take(pageSize)
-          .AsNoTracking()
-          .ToListAsync();
+        .Include(s => s.Communities)
+        .ThenInclude(sc => sc.Community)
+        .Include(s => s.Events)
+        .ThenInclude(se => se.Event)
+        .Skip((pageNumber - 1) * pageSize)
+        .Take(pageSize)
+        .AsNoTracking()
+        .ToListAsync();
     }
   }
 }

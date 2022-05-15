@@ -14,6 +14,7 @@ namespace Application.Features.Students.Commands.AddFollowedCommunity
   public partial class AddFollowedCommunityCommand : IRequest<Response<int>>
   {
     public int CommunityId { get; set; }
+    public int StudentId { get; set; }
   }
   public class AddFollowedCommunityCommandHandler : IRequestHandler<AddFollowedCommunityCommand, Response<int>>
   {
@@ -35,10 +36,11 @@ namespace Application.Features.Students.Commands.AddFollowedCommunity
 
     public async Task<Response<int>> Handle(AddFollowedCommunityCommand request, CancellationToken cancellationToken)
     {
-      var community = await _communityRepository.GetCommunityByIdAsync(request.CommunityId);
+      var community = await _communityRepository.GetByIdAsync(request.CommunityId);
       if (community == null) throw new ApiException("Community not found");
 
-      var student = await _studentRepository.GetStudentByApplicationUserIdAsync(_authenticatedUserService.UserId);
+      // TODO: Get student by application user id
+      var student = await _studentRepository.GetByIdAsync(request.StudentId);
       if (student == null) throw new ApiException("Student not found"); ;
 
       var studentCommunity = new StudentCommunity

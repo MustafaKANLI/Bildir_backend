@@ -22,14 +22,19 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<Event> GetEventByIdWithRelationsAsync(int eventId)
         {
-            return await _events.Include(p => p.Venue).Include(p => p.Participants)
+            return await _events
+                .Include(e => e.Community)
+                .Include(e => e.Students)
+                .ThenInclude(se => se.Student)
                 .SingleOrDefaultAsync(x => x.Id == eventId);
         }
 
         public async Task<IReadOnlyList<Event>> GetEventsWithRelationsAsync(int pageNumber, int pageSize)
         {
-            return await _events.Include(x => x.Venue)
-                .Include(x => x.Participants)
+            return await _events
+                .Include(e => e.Community)
+                .Include(e => e.Students)
+                .ThenInclude(se => se.Student)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .AsNoTracking()

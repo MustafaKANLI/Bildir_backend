@@ -10,8 +10,8 @@ namespace Application.Interfaces.Repositories
   public interface IStudentRepositoryAsync : IGenericRepositoryAsync<Student>
   {
     public Task<Student> GetStudentByApplicationUserIdAsync(string applicationUserId);
-    public Task<IReadOnlyList<GetAllStudentsViewModel>> GetStudentsWithRelationsAsync(int pageNumber, int pageSize);
-    public Task<Student> GetStudentByIdAsync(int id);
-    public Task<GetAllStudentsViewModel> GetStudentByApplicationUserIdWithRelationsAsync(string applicationUserId);
+    public Task<IReadOnlyList<Student>> GetStudentsWithRelationsAsync(int pageNumber, int pageSize);
+    public Task<Student> GetStudentByIdWithRelationsAsync(int id);
+    public Task<Student> GetStudentByApplicationUserIdWithRelationsAsync(string applicationUserId);
   }
 }

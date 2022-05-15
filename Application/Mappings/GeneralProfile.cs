@@ -31,9 +31,6 @@ using Application.Features.Contacts.Commands.UpdateContact;
 using Application.Features.Personnels.Queries.GetAllPersonnels;
 using Application.Features.Personnels.Commands.CreatePersonnel;
 using Application.Features.Personnels.Commands.UpdatePersonnel;
-using Application.Features.Events.Queries.GetAllEvents;
-using Application.Features.Events.Commands.CreateEvent;
-using Application.Features.Events.Commands.UpdateEvent;
 using Application.Features.Inventories.Queries.GetAllInventories;
 using Application.Features.Inventories.Commands.CreateInventory;
 using Application.Features.Inventories.Commands.UpdateInventory;
@@ -47,12 +44,20 @@ using Application.Features.Announcements.Commands.UpdateAnnouncement;
 using Application.Features.Communities.Commands.CreateCommunity;
 using Application.Features.Communities.Commands.UpdateCommunity;
 using Application.Features.Communities.Queries.GetAllCommunities;
-using Application.ViewModels.Community;
+using Application.Features.Communities.Queries.GetCommunityById;
+using Application.Features.Communities.Queries.GetLoggedInCommunity;
 
 //student
 using Application.Features.Students.Commands.CreateStudent;
 using Application.Features.Students.Queries.GetAllStudents;
-using Application.ViewModels.Student;
+using Application.Features.Students.Commands.UpdateStudent;
+using Application.Features.Students.Queries.GetStudentById;
+using Application.Features.Students.Queries.GetLoggedInStudent;
+
+//event
+using Application.Features.Events.Queries.GetAllEvents;
+using Application.Features.Events.Queries.GetEventById;
+using Application.Features.Events.Commands.CreateEvent;
 
 namespace Application.Mappings
 {
@@ -60,19 +65,42 @@ namespace Application.Mappings
     {
         public GeneralProfile()
         {
-
             CreateMap<CreateStudentCommand, Student>();
             CreateMap<Student, GetAllStudentsViewModel>().ReverseMap();
-            //CreateMap<UpdateCommunityCommand, Community>();
+            CreateMap<UpdateStudentCommand, Student>();
             CreateMap<GetAllStudentsQuery, GetAllStudentsParameter>();
-            CreateMap<Student, StudentViewModel>().ReverseMap();
+            CreateMap<Student, GetLoggedInStudentViewModel>().ReverseMap();
+            CreateMap<Student, GetStudentByIdViewModel>().ReverseMap();
+            CreateMap<Student, GetAllCommunitiesStudentViewModel>();
+            CreateMap<Student, GetCommunityByIdStudentViewModel>();
+            CreateMap<Student, GetLoggedInCommunityStudentViewModel>();
+            CreateMap<Student, GetAllEventsStudentViewModel>();
+            CreateMap<Student, GetEventByIdStudentViewModel>();
 
             CreateMap<CreateCommunityCommand, Community>();
-            CreateMap<Community, GetAllCommunitiesViewModel>().ReverseMap();
+            CreateMap<Community, GetCommunityByIdViewModel>().ReverseMap();
             CreateMap<UpdateCommunityCommand, Community>();
             CreateMap<GetAllCommunitiesQuery, GetAllCommunitiesParameter>();
-            CreateMap<Community, CommunityViewModel>().ReverseMap();
-          
+            CreateMap<Community, GetLoggedInCommunityViewModel>().ReverseMap();
+            CreateMap<Community, GetAllCommunitiesViewModel>().ReverseMap();
+            CreateMap<Community, GetAllStudentsCommunityViewModel>();
+            CreateMap<Community, GetStudentByIdCommunityViewModel>();
+            CreateMap<Community, GetLoggedInStudentCommunityViewModel>();
+            CreateMap<Community, GetAllEventsCommunityViewModel>();
+            CreateMap<Community, GetEventByIdCommunityViewModel>();
+
+            CreateMap<Event, GetAllEventsViewModel>().ReverseMap();
+            CreateMap<CreateEventCommand, Event>();
+            //CreateMap<UpdateEventCommand, Event>();
+            CreateMap<GetAllEventsQuery, GetAllEventsParameter>();
+            CreateMap<Event, GetEventByIdViewModel>();
+            CreateMap<Event, GetAllStudentsEventViewModel>();
+            CreateMap<Event, GetLoggedInStudentEventViewModel>();
+            CreateMap<Event, GetStudentByIdEventViewModel>();
+            CreateMap<Event, GetAllCommunitiesEventViewModel>();
+            CreateMap<Event, GetLoggedInCommunityEventViewModel>();
+            CreateMap<Event, GetCommunityByIdEventViewModel>();
+
             CreateMap<Product, GetAllProductsViewModel>().ReverseMap();
             CreateMap<CreateProductCommand, Product>();
             CreateMap<GetAllProductsQuery, GetAllProductsParameter>();
@@ -109,12 +137,7 @@ namespace Application.Mappings
             CreateMap<Education, GetAllEducationsViewModel>().ReverseMap();
             CreateMap<CreateEducationCommand, Education>();
             CreateMap<UpdateEducationCommand, Education>();
-            CreateMap<GetAllEducationsQuery, GetAllEventsParameter>();
-
-            CreateMap<Event, GetAllEventsViewModel>().ReverseMap();
-            CreateMap<CreateEventCommand, Event>();
-            CreateMap<UpdateEventCommand, Event>();
-            CreateMap<GetAllEventsQuery, GetAllEventsParameter>();
+            //CreateMap<GetAllEducationsQuery, GetAllEventsParameter>();
 
             CreateMap<Personnel, GetAllPersonnelsViewModel>().ReverseMap();
             CreateMap<CreatePersonnelCommand, Personnel>();

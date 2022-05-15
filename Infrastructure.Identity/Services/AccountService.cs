@@ -133,7 +133,8 @@ namespace Infrastructure.Identity.Services
       {
         Email = request.Email,
         FirstName = request.Name,
-        UserName = request.Name.ToLower().Trim().Replace(" ", "")
+        UserName = request.Name.ToLower().Trim().Replace(" ", ""),
+        EmailConfirmed = true
       };
       var userWithSameEmail = await _userManager.FindByEmailAsync(request.Email);
       if (userWithSameEmail == null)
@@ -181,7 +182,8 @@ namespace Infrastructure.Identity.Services
       var user = new ApplicationUser
       {
         Email = request.SchoolEmail,
-        UserName = request.SchoolEmail.ToLower().Trim().Replace(".", "").Replace("@", "").Replace("+", "")
+        UserName = request.SchoolEmail.ToLower().Trim().Replace(".", "").Replace("@", "").Replace("+", ""),
+        EmailConfirmed = true
       };
       var userWithSameEmail = await _userManager.FindByEmailAsync(request.SchoolEmail);
       if (userWithSameEmail == null)

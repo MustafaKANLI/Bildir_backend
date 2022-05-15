@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using Domain.Entities;
-using Application.ViewModels.Student;
 
 namespace Application.Features.Communities.Queries.GetAllCommunities
 {
@@ -14,7 +13,8 @@ namespace Application.Features.Communities.Queries.GetAllCommunities
     public string Name { get; set; }
     public string Email { get; set; }
     public string Description { get; set; }
-    public ICollection<StudentViewModel> Followers { get; set; }
+    public ICollection<GetAllCommunitiesStudentViewModel> Followers { get; set; }
+    public ICollection<GetAllCommunitiesEventViewModel> OrganizedEvents { get; set; }
     //public Image AvatarImage { get; set; }
     //public Image BackgroundImage { get; set; }
     public string? InstagramLink { get; set; }

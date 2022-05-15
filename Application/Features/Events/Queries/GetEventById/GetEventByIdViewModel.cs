@@ -1,20 +1,20 @@
-﻿using Domain.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Domain.Entities;
 using Domain.Enums;
 
-namespace Domain.Entities
+namespace Application.Features.Events.Queries.GetEventById
 {
-  public class Event : AuditableBaseEntity
+  public class GetEventByIdViewModel
   {
+    public int Id { get; set; }
     public string Title { get; set; }
     public string Description { get; set; }
     public string Location { get; set; }
     public string Tags { get; set; }
-    public ICollection<StudentEvent> Students { get; set; }
-    public Community Community { get; set; }
-    public int CommunityId { get; set; }
+    public GetEventByIdCommunityViewModel EventOf { get; set; }
+    public ICollection<GetEventByIdStudentViewModel> Participants { get; set; }
     public EventStates State { get; set; }
     public DateTime Date { get; set; }
   }

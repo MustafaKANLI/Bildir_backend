@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Application.ViewModels.Student
+namespace Application.Features.Communities.Queries.GetAllCommunities
 {
-  public class StudentViewModel
+  public class GetAllCommunitiesStudentViewModel
   {
+    public int Id { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string ApplicationUserId { get; set; }

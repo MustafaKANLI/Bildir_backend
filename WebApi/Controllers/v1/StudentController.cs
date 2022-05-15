@@ -3,6 +3,10 @@
 //using Application.Features.Communities.Commands.UpdateAnnouncement;
 using Application.Features.Students.Queries.GetAllStudents;
 using Application.Features.Students.Commands.AddFollowedCommunity;
+using Application.Features.Students.Queries.GetStudentById;
+using Application.Features.Students.Queries.GetLoggedInStudent;
+using Application.Features.Students.Commands.UpdateStudent;
+using Application.Features.Students.Commands.RegisterStudentToEvent;
 
 
 //using Application.Features.Communities.Queries.GetAnnouncementById;
@@ -28,20 +32,28 @@ namespace WebApi.Controllers.v1
     {
       return Ok(await Mediator.Send(command));
     }
+    
+    // POST api/<controller>/AddFollowedCommunity
+    [HttpPost("RegisterToEvent")]
+    //        [Authorize]
+    public async Task<IActionResult> Post(RegisterStudentToEventCommand command)
+    {
+      return Ok(await Mediator.Send(command));
+    }
 
     // GET api/<controller>/5
-    //[HttpGet("{id}")]
-    //public async Task<IActionResult> Get(int id)
-    //{
-    //  return Ok(await Mediator.Send(new GetCommunityByIdQuery { Id = id }));
-    //}
+    [HttpGet("{id}")]
+    public async Task<IActionResult> Get(int id)
+    {
+      return Ok(await Mediator.Send(new GetStudentByIdQuery { Id = id }));
+    }
 
     // GET api/<controller>
-    //[HttpGet("CurrentlyLoggedIn")]
-    //public async Task<IActionResult> Get()
-    //{
-    //  return Ok(await Mediator.Send(new GetLoggedInCommunityQuery { }));
-    //}
+    [HttpGet("CurrentlyLoggedIn")]
+    public async Task<IActionResult> Get()
+    {
+      return Ok(await Mediator.Send(new GetLoggedInStudentQuery { }));
+    }
 
     // POST api/<controller>
     //[HttpPost]
@@ -61,16 +73,16 @@ namespace WebApi.Controllers.v1
 
 
     // PUT api/<controller>/5
-    //[HttpPut("{id}")]
-    ////[Authorize]
-    //public async Task<IActionResult> Put(int id, UpdateCommunityCommand command)
-    //{
-    //  if (id != command.Id)
-    //  {
-    //    return BadRequest();
-    //  }
-    //  return Ok(await Mediator.Send(command));
-    //}
+    [HttpPut("{applicationUserId}")]
+    //[Authorize]
+    public async Task<IActionResult> Put(string applicationUserId, UpdateStudentCommand command)
+    {
+      if (applicationUserId != command.ApplicationUserId)
+      {
+        return BadRequest();
+      }
+      return Ok(await Mediator.Send(command));
+    }
 
     // DELETE api/<controller>/5
     //[HttpDelete("{id}")]

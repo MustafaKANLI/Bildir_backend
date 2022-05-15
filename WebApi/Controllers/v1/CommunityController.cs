@@ -4,7 +4,7 @@
 using Application.Features.Communities.Queries.GetAllCommunities;
 using Application.Features.Communities.Queries.GetCommunityByCreationKey;
 using Application.Features.Communities.Queries.GetCommunityById;
-using Application.Features.Communities.Queries.GetCommunityByApplicationUserId;
+using Application.Features.Communities.Queries.GetLoggedInCommunity;
 using Application.Features.Communities.Commands.UpdateCommunity;
 using Application.Features.Communities.Commands.AddSocialMediaLinkToCommunity;
 

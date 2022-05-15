@@ -14,41 +14,31 @@ namespace Infrastructure.Persistence.Seeds
         {
             var event1 = new Event
             {
-                Name = "Tanisma Toplantisi",
-                Description = "Kaynasmak icin ayarlanan etkinlik",
-                BeginDate = new DateTime(2022, 1, 2),
-                EndDate = new DateTime(2022, 1, 7),
-                State = "NEW"
+                Title = "Example Event",
+                Description = "This Event will be awesome",
+                Location = "Antalya",
+                CommunityId = 1,
+                Tags = "event,antalya,bildir",
+                Date = new DateTime(2022, 8, 5),
+                State = Domain.Enums.EventStates.Active,
             };
+
             var eventList = await eventRepository.GetAllAsync();
-            var _event1 = eventList.Where(p => p.Name.StartsWith(event1.Name)).Count();
+            var _event1 = eventList.Where(p => p.Title.StartsWith(event1.Title)).Count();
 
             if (_event1 > 0) // ALREADY SEEDED
                 return true;
 
-
-
-            event1 = await eventRepository.AddAsync(event1);
-
-
-            Personnel personnel = await personnelRepository.GetByIdAsync(1); // Default personnnel (participant)
-            if (personnel == null) // ALREADY SEEDED
-                Console.WriteLine("Default participant (personnel) has not found");
-            else
-            {
-                personnel.EventId = event1.Id;
-                await personnelRepository.UpdateAsync(personnel);
-            }
-
-            Address address = await addressRepository.GetByIdAsync(1); // Default address
-            if (address == null) // ALREADY SEEDED
-                Console.WriteLine("Default address has not found");
-            else
-            {
-                address.EventId = event1.Id;
-                await addressRepository.UpdateAsync(address);
-            }
-
+            if (_event1 == 0)
+              try
+              {
+                await eventRepository.AddAsync(event1);
+              }
+              catch (Exception ex)
+              {
+                Console.WriteLine(ex.Message);
+                throw;
+              }
 
             return false; // NOT ALREADY SEEDED
 

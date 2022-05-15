@@ -51,9 +51,10 @@ namespace Infrastructure.Persistence
             services.AddTransient<ICommunityRepositoryAsync, CommunityRepositoryAsync>();
             services.AddTransient<IStudentRepositoryAsync, StudentRepositoryAsync>();
             services.AddTransient<IStudentCommunityRepositoryAsync, StudentCommunityRepositoryAsync>();
+            services.AddTransient<IStudentEventRepositoryAsync, StudentEventRepositoryAsync>();
 
 
-            #endregion
-        }
+      #endregion
+    }
     }
 }

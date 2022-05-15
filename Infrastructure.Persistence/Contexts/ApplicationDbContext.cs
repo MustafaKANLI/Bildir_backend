@@ -25,6 +25,8 @@ namespace Infrastructure.Persistence.Contexts
         }
         public DbSet<Community> Communities { get; set; }
         public DbSet<Student> Students { get; set; }
+        public DbSet<Event> Events { get; set; }
+        public DbSet<StudentEvent> EventParticipations { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Address> Addresses { get; set; }
@@ -36,7 +38,6 @@ namespace Infrastructure.Persistence.Contexts
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Personnel> Personnels { get; set; }
         public DbSet<Inventory> Inventories { get; set; }
-        public DbSet<Event> Events { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
@@ -71,12 +72,23 @@ namespace Infrastructure.Persistence.Contexts
                 .HasKey(sc => new { sc.StudentId, sc.CommunityId });  
             builder.Entity<StudentCommunity>()
                 .HasOne(sc => sc.Student)
-                .WithMany(s => s.FollowedCommunities)
+                .WithMany(s => s.Communities)
                 .HasForeignKey(sc => sc.StudentId);  
             builder.Entity<StudentCommunity>()
                 .HasOne(sc => sc.Community)
-                .WithMany(c => c.Followers)
+                .WithMany(c => c.Students)
                 .HasForeignKey(sc => sc.CommunityId);
-            }
+
+            builder.Entity<StudentEvent>()
+                .HasKey(se => new { se.StudentId, se.EventId });  
+            builder.Entity<StudentEvent>()
+                .HasOne(se => se.Student)
+                .WithMany(s => s.Events)
+                .HasForeignKey(se => se.StudentId);  
+            builder.Entity<StudentEvent>()
+                .HasOne(se => se.Event)
+                .WithMany(e => e.Students)
+                .HasForeignKey(se => se.EventId);
+        }
     }
 }

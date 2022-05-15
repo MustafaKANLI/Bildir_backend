@@ -12,9 +12,9 @@ namespace Application.Interfaces.Repositories
   {
     public Task<Community> GetCommunityByCreationKeyAsync(string creationKey);
     public Task<Community> GetCommunityByApplicationUserIdAsync(string applicationUserId);
-    public Task<GetAllCommunitiesViewModel> GetCommunityByIdWithRelationsAsync(int id);
-    public Task<Community> GetCommunityByIdAsync(int id);
-    public Task<IReadOnlyList<GetAllCommunitiesViewModel>> GetCommunitiesWithRelationsAsync(int pageNumber, int pageSize);
+    public Task<Community> GetCommunityByIdWithRelationsAsync(int id);
+    public Task<IReadOnlyList<Community>> GetCommunitiesWithRelationsAsync(int pageNumber, int pageSize);
+    public Task<Community> GetCommunityByApplicationUserIdWithRelationsAsync(string applicationUserId);
 
   }
 }
