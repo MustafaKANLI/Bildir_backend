@@ -45,40 +45,17 @@ namespace WebApi
                     await Infrastructure.Identity.Seeds.DefaultBasicUser.SeedAsync(userManager, roleManager);
 
 
-                    var categoryRepository = services.GetRequiredService<ICategoryRepositoryAsync>();
-                    var productRepository = services.GetRequiredService<IProductRepositoryAsync>();
-                    var addressRepository = services.GetRequiredService<IAddressRepositoryAsync>();
-                    var certificateRepository = services.GetRequiredService<ICertificateRepositoryAsync>();
-                    var workHistoryRepository = services.GetRequiredService<IWorkHistoryRepositoryAsync>();
-                    var educationRepository = services.GetRequiredService<IEducationRepositoryAsync>();
-                    var projectRepository = services.GetRequiredService<IProjectRepositoryAsync>();
-
-                    var contactRepository = services.GetRequiredService<IContactRepositoryAsync>();
                     var communityRepository = services.GetRequiredService<ICommunityRepositoryAsync>();
                     var studentRepository = services.GetRequiredService<IStudentRepositoryAsync>();
-
-
-                    var announcementRepository = services.GetRequiredService<IAnnouncementRepositoryAsync>();
-                    var personnelRepository = services.GetRequiredService<IPersonnelRepositoryAsync>();
-                    var inventoryRepository = services.GetRequiredService<IInventoryRepositoryAsync>();
+                    var notificationRepository = services.GetRequiredService<INotificationRepositoryAsync>();
                     var eventRepository = services.GetRequiredService<IEventRepositoryAsync>();
+
                     //var logger = services.GetRequiredService<Microsoft.Extensions.Logging.ILogger>();
-                    await Infrastructure.Persistence.Seeds.DefaultCategories.SeedAsync(categoryRepository);
-                    await Infrastructure.Persistence.Seeds.DefaultAddresses.SeedAsync(addressRepository);
-                    await Infrastructure.Persistence.Seeds.DefaultCertificates.SeedAsync(certificateRepository);
-                    await Infrastructure.Persistence.Seeds.DefaultWorkHistories.SeedAsync(workHistoryRepository);
-                    await Infrastructure.Persistence.Seeds.DefaultEducations.SeedAsync(educationRepository);
-                    await Infrastructure.Persistence.Seeds.DefaultProjects.SeedAsync(projectRepository);
-                    await Infrastructure.Persistence.Seeds.DefaultContacts.SeedAsync(contactRepository);
+
                     await Infrastructure.Persistence.Seeds.DefaultCommunities.SeedAsync(communityRepository);
                     await Infrastructure.Persistence.Seeds.DefaultStudents.SeedAsync(studentRepository);
-            
-
-                    await Infrastructure.Persistence.Seeds.DefaultAnnouncements.SeedAsync(announcementRepository);
-                    await Infrastructure.Persistence.Seeds.DefaultPersonnels.SeedAsync(personnelRepository);
-                    await Infrastructure.Persistence.Seeds.DefaultProducts.SeedAsync(productRepository);
-                    await Infrastructure.Persistence.Seeds.DefaultInventories.SeedAsync(inventoryRepository, productRepository);
-                    await Infrastructure.Persistence.Seeds.DefaultEvents.SeedAsync(eventRepository, personnelRepository,addressRepository);
+                    await Infrastructure.Persistence.Seeds.DefaultEvents.SeedAsync(eventRepository);
+                    await Infrastructure.Persistence.Seeds.DefaultNotifications.SeedAsync(notificationRepository);;
 
                     Log.Information("Finished Seeding Default Data");
                     Log.Information("Application Starting");

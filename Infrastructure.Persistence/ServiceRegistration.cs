@@ -35,23 +35,12 @@ namespace Infrastructure.Persistence
             }
             #region Repositories
             services.AddTransient(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
-            services.AddTransient<IProductRepositoryAsync, ProductRepositoryAsync>();
-            services.AddTransient<ICategoryRepositoryAsync, CategoryRepositoryAsync>();
-            services.AddTransient<IAddressRepositoryAsync, AddressRepositoryAsync>();
-            services.AddTransient<ICertificateRepositoryAsync, CertificateRepositoryAsync>();
-            services.AddTransient<IWorkHistoryRepositoryAsync, WorkHistoryRepositoryAsync>();
-            services.AddTransient<IEducationRepositoryAsync, EducationRepositoryAsync>();
-
-            services.AddTransient<IContactRepositoryAsync, ContactRepositoryAsync>();
-            services.AddTransient<IProjectRepositoryAsync, ProjectRepositoryAsync>();
-            services.AddTransient<IAnnouncementRepositoryAsync, AnnouncementRepositoryAsync>();
-            services.AddTransient<IPersonnelRepositoryAsync, PersonnelRepositoryAsync>();
-            services.AddTransient<IInventoryRepositoryAsync, InventoryRepositoryAsync>();
             services.AddTransient<IEventRepositoryAsync, EventRepositoryAsync>();
             services.AddTransient<ICommunityRepositoryAsync, CommunityRepositoryAsync>();
             services.AddTransient<IStudentRepositoryAsync, StudentRepositoryAsync>();
             services.AddTransient<IStudentCommunityRepositoryAsync, StudentCommunityRepositoryAsync>();
             services.AddTransient<IStudentEventRepositoryAsync, StudentEventRepositoryAsync>();
+            services.AddTransient<INotificationRepositoryAsync, NotificationRepositoryAsync>();
 
 
       #endregion

@@ -8,23 +8,19 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence.Seeds
 {
-    public class DefaultEvents
+    public class DefaultNotifications
     {
-        public static async Task<bool> SeedAsync(IEventRepositoryAsync eventRepository)
+        public static async Task<bool> SeedAsync(INotificationRepositoryAsync notificationRepository)
         {
-            var event1 = new Event
+            var notification1 = new Notification
             {
-                Title = "Example Event",
-                Description = "This Event will be awesome",
-                Location = "Antalya",
+                Title = "Example Notification",
+                Description = "This is a notification",
                 CommunityId = 1,
-                Tags = "event,antalya,bildir",
-                Date = new DateTime(2022, 8, 5),
-                State = Domain.Enums.EventStates.Active,
             };
 
-            var eventList = await eventRepository.GetAllAsync();
-            var _event1 = eventList.Where(p => p.Title.StartsWith(event1.Title)).Count();
+            var notificationList = await notificationRepository.GetAllAsync();
+            var _event1 = notificationList.Where(p => p.Title.StartsWith(notification1.Title)).Count();
 
             if (_event1 > 0) // ALREADY SEEDED
                 return true;
@@ -32,7 +28,7 @@ namespace Infrastructure.Persistence.Seeds
             if (_event1 == 0)
               try
               {
-                await eventRepository.AddAsync(event1);
+                await notificationRepository.AddAsync(notification1);
               }
               catch (Exception ex)
               {

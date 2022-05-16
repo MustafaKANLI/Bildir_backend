@@ -27,17 +27,7 @@ namespace Infrastructure.Persistence.Contexts
         public DbSet<Student> Students { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<StudentEvent> EventParticipations { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Address> Addresses { get; set; }
-        public DbSet<Certificate> Certificates { get; set; }
-        public DbSet<WorkHistory> WorkHistory { get; set; }
-        public DbSet<Project> Projects { get; set; }
-        public DbSet<Announcement> Announcements { get; set; }
-        public DbSet<Education> Educations { get; set; }
-        public DbSet<Contact> Contacts { get; set; }
-        public DbSet<Personnel> Personnels { get; set; }
-        public DbSet<Inventory> Inventories { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
