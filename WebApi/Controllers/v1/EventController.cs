@@ -8,6 +8,7 @@ using Application.Features.Events.Commands.EndEvent;
 using Application.Features.Events.Commands.UpdateEvent;
 using Application.Features.Events.Queries.GetAllEvents;
 using Application.Features.Events.Queries.GetEventById;
+using Application.Features.Events.Queries.GetEventsByStudentId;
 using Application.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -32,6 +33,13 @@ namespace WebApi.Controllers.v1
     public async Task<IActionResult> Get(int id)
     {
       return Ok(await Mediator.Send(new GetEventByIdQuery { Id = id }));
+    }
+
+    // GET api/<controller>/GetEventsByStudentId/5
+    [HttpGet("GetEventsByStudentId/{studentId}")]
+    public async Task<IActionResult> Get([FromQuery] GetEventsByStudentIdParameter filter, int studentId)
+    {
+      return Ok(await Mediator.Send(new GetEventsByStudentIdQuery { StudentId = studentId, PageSize = filter.PageSize, PageNumber = filter.PageNumber}));
     }
 
     //// POST api/<controller>

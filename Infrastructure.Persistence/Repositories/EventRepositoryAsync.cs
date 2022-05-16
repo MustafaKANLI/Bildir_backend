@@ -41,6 +41,17 @@ namespace Infrastructure.Persistence.Repositories
                 .ToListAsync();
         }
 
+        public async Task<IReadOnlyList<Event>> GetEventsByStudentIdWithCommunityAsync(int studentId, int pageNumber, int pageSize)
+        {
+            return await _events
+                .Where(e => e.Students.Any(se => se.StudentId == studentId))
+                .Include(e => e.Community)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .AsNoTracking()
+                .ToListAsync();
+        }
+
         public async Task<Event> GetEventByIdWithCommunityAsync(int eventId) 
         { 
             return await _events

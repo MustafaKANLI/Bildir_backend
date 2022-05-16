@@ -18,6 +18,7 @@ using Application.Features.Students.Queries.GetLoggedInStudent;
 //event
 using Application.Features.Events.Queries.GetAllEvents;
 using Application.Features.Events.Queries.GetEventById;
+using Application.Features.Events.Queries.GetEventsByStudentId;
 using Application.Features.Events.Commands.CreateEvent;
 using Application.Features.Events.Commands.UpdateEvent;
 
@@ -59,6 +60,7 @@ namespace Application.Mappings
             CreateMap<Community, GetStudentByIdCommunityViewModel>();
             CreateMap<Community, GetLoggedInStudentCommunityViewModel>();
             CreateMap<Community, GetAllEventsCommunityViewModel>();
+            CreateMap<Community, GetEventsByStudentIdCommunityViewModel>();
             CreateMap<Community, GetEventByIdCommunityViewModel>();
             CreateMap<Community, GetAllNotificationsCommunityViewModel>();
 
@@ -66,7 +68,9 @@ namespace Application.Mappings
             CreateMap<CreateEventCommand, Event>();
             CreateMap<UpdateEventCommand, Event>();
             CreateMap<GetAllEventsQuery, GetAllEventsParameter>();
+            CreateMap<GetEventsByStudentIdQuery, GetEventsByStudentIdParameter>();
             CreateMap<Event, GetEventByIdViewModel>();
+            CreateMap<Event, GetEventsByStudentIdViewModel>();
             CreateMap<Event, GetAllStudentsEventViewModel>();
             CreateMap<Event, GetLoggedInStudentEventViewModel>();
             CreateMap<Event, GetStudentByIdEventViewModel>();
