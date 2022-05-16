@@ -31,6 +31,9 @@ namespace Application.Features.Notifications.Commands.CreateNotification
 
     public async Task<Response<int>> Handle(CreateNotificationCommand request, CancellationToken cancellationToken)
     {
+      /*
+       TODO IMPLEMENT AUTHENTICATED
+       */
       var community = await _communityRepository.GetCommunityByIdWithRelationsAsync(request.CommunityId);
       if (community == null) throw new ApiException("Community not found");
 

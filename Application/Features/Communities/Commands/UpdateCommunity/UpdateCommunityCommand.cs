@@ -16,12 +16,12 @@ namespace Application.Features.Communities.Commands.UpdateCommunity
   public class UpdateCommunityCommand : IRequest<Response<int>>
   {
     public int Id { get; set; }
-    public string CreationKey { get; set; }
-    public bool IsKeyUsed { get; set; }
-    public string ApplicationUserId { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
     public string Email { get; set; }
+    public string ApplicationUserId { get; set; }
+    public string CreationKey { get; set; }
+    public bool IsKeyUsed { get; set; }
 
     public class UpdatePersonnelCommandHandler : IRequestHandler<UpdateCommunityCommand, Response<int>>
     {

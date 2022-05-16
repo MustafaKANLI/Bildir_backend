@@ -12,7 +12,7 @@ namespace Application.Features.Communities.Queries.GetLoggedInCommunity
     public string Description { get; set; }
     public string Location { get; set; }
     public string Tags { get; set; }
-    public EventStates State { get; set; }
+    public string State { get; set; }
     public DateTime Date { get; set; }
   }
 }

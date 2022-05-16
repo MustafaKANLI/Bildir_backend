@@ -32,6 +32,7 @@ namespace Application.Features.Students.Commands.UpdateStudent
       }
       public async Task<Response<int>> Handle(UpdateStudentCommand request, CancellationToken cancellationToken)
       {
+        /*TODO IMPLEMENT AUTHENTICATED USER*/
         var student = await _studentRepository.GetStudentByApplicationUserIdAsync(request.ApplicationUserId);
 
         if (student == null)

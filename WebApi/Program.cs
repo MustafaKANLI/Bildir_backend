@@ -49,6 +49,7 @@ namespace WebApi
                     var studentRepository = services.GetRequiredService<IStudentRepositoryAsync>();
                     var notificationRepository = services.GetRequiredService<INotificationRepositoryAsync>();
                     var eventRepository = services.GetRequiredService<IEventRepositoryAsync>();
+                    var reportRepository = services.GetRequiredService<IReportRepositoryAsync>();
 
                     //var logger = services.GetRequiredService<Microsoft.Extensions.Logging.ILogger>();
 
@@ -56,6 +57,7 @@ namespace WebApi
                     await Infrastructure.Persistence.Seeds.DefaultStudents.SeedAsync(studentRepository);
                     await Infrastructure.Persistence.Seeds.DefaultEvents.SeedAsync(eventRepository);
                     await Infrastructure.Persistence.Seeds.DefaultNotifications.SeedAsync(notificationRepository);;
+                    await Infrastructure.Persistence.Seeds.DefaultReports.SeedAsync(reportRepository);
 
                     Log.Information("Finished Seeding Default Data");
                     Log.Information("Application Starting");

@@ -33,6 +33,7 @@ namespace Application.Features.Students.Commands.RegisterStudentToEvent
 
     public async Task<Response<int>> Handle(RegisterStudentToEventCommand request, CancellationToken cancellationToken)
     {
+      /*TODO*/
       //if(_authenticatedUserService.UserId == null) throw new ApiException("User not logged in");
 
       var student = await _studentRepository.GetByIdAsync(request.StudentId);

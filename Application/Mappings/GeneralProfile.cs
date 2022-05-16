@@ -26,6 +26,10 @@ using Application.Features.Notifications.Commands.CreateNotification;
 using Application.Features.Notifications.Queries.GetAllNotifications;
 using Application.Features.Notifications.Queries.GetAllNotificationsByCommunityId;
 
+//report
+using Application.Features.Reports.Commands.CreateReport;
+using Application.Features.Reports.Queries.GetAllReports;
+
 namespace Application.Mappings
 {
     public class GeneralProfile : Profile
@@ -43,6 +47,7 @@ namespace Application.Mappings
             CreateMap<Student, GetLoggedInCommunityStudentViewModel>();
             CreateMap<Student, GetAllEventsStudentViewModel>();
             CreateMap<Student, GetEventByIdStudentViewModel>();
+            CreateMap<Student, GetAllReportsStudentViewModel>();
 
             CreateMap<CreateCommunityCommand, Community>();
             CreateMap<Community, GetCommunityByIdViewModel>().ReverseMap();
@@ -68,12 +73,17 @@ namespace Application.Mappings
             CreateMap<Event, GetAllCommunitiesEventViewModel>();
             CreateMap<Event, GetLoggedInCommunityEventViewModel>();
             CreateMap<Event, GetCommunityByIdEventViewModel>();
+            CreateMap<Event, GetAllReportsEventViewModel>();
 
             CreateMap<Notification, GetAllNotificationsViewModel>().ReverseMap();
             CreateMap<CreateNotificationCommand, Notification>();
             CreateMap<GetAllNotificationsQuery, GetAllNotificationsParameter>();
             CreateMap<GetAllNotificationsByCommunityIdQuery, GetAllNotificationsByCommunityIdParameter>();
             CreateMap<Notification, GetAllNotificationsByCommunityIdViewModel>();
+
+            CreateMap<Report, GetAllReportsViewModel>().ReverseMap();
+            CreateMap<CreateReportCommand, Report>();
+            CreateMap<GetAllReportsQuery, GetAllReportsParameter>();
 
         }
     }
