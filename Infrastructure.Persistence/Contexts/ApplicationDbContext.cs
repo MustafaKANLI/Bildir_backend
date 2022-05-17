@@ -29,6 +29,7 @@ namespace Infrastructure.Persistence.Contexts
         public DbSet<StudentEvent> EventParticipations { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<Report> Reports { get; set; }
+        public DbSet<Image> Images { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {

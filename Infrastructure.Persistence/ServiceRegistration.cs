@@ -42,6 +42,7 @@ namespace Infrastructure.Persistence
             services.AddTransient<IStudentEventRepositoryAsync, StudentEventRepositoryAsync>();
             services.AddTransient<INotificationRepositoryAsync, NotificationRepositoryAsync>();
             services.AddTransient<IReportRepositoryAsync, ReportRepositoryAsync>();
+            services.AddTransient<IImageRepositoryAsync, ImageRepositoryAsync>();
 
 
       #endregion

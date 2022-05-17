@@ -15,6 +15,7 @@ namespace Application.Features.Events.Queries.GetAllEvents
     public string Tags { get; set; }
     public GetAllEventsCommunityViewModel EventOf { get; set; }
     public ICollection<GetAllEventsStudentViewModel> Participants { get; set; }
+    public ICollection<Image> Images { get; set; }
     public string State { get; set; }
     public DateTime Date { get; set; }
   }

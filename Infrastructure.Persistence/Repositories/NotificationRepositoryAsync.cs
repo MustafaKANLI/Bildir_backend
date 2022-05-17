@@ -28,7 +28,7 @@ namespace Infrastructure.Persistence.Repositories
                 .Take(pageSize)
                 .AsNoTracking()
                 .ToListAsync();
-    }
+        }
 
         public async Task<IReadOnlyList<Notification>> GetNotificationsWithRelationsAsync(int pageNumber, int pageSize)
         {

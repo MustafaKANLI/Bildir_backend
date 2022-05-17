@@ -26,6 +26,7 @@ namespace Infrastructure.Persistence.Repositories
                 .Include(e => e.Community)
                 .Include(e => e.Students)
                 .ThenInclude(se => se.Student)
+                .Include(e => e.Images)
                 .SingleOrDefaultAsync(x => x.Id == eventId);
         }
 
@@ -56,6 +57,7 @@ namespace Infrastructure.Persistence.Repositories
         { 
             return await _events
               .Include(e => e.Community)
+              .Include(e => e.Images)
               .SingleOrDefaultAsync(e => e.Id == eventId);
         }
     }
