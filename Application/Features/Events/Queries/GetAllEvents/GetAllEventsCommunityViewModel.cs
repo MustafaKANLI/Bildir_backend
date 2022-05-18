@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,6 +11,8 @@ namespace Application.Features.Events.Queries.GetAllEvents
     public string CreationKey { get; set; }
     public string ApplicationUserId { get; set; }
     public bool IsKeyUsed { get; set; }
+    public Image Avatar { get; set; }
+    public Image BackgroundImage { get; set; }
     public string Name { get; set; }
     public string Email { get; set; }
     public string Description { get; set; }

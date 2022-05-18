@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -12,6 +13,8 @@ namespace Application.Features.Events.Queries.GetEventById
     public bool IsKeyUsed { get; set; }
     public string Name { get; set; }
     public string Email { get; set; }
+    public Image Avatar { get; set; }
+    public Image BackgroundImage { get; set; }
     public string Description { get; set; }
     public string? InstagramLink { get; set; }
     public string? TwitterLink { get; set; }

@@ -12,7 +12,7 @@ namespace WebApi.Helpers
   public class UploadImagesHelper
   {
     static List<string> allowedExtensions = new List<string> { ".jpg", ".png" };
-    public static async Task<ICollection<Image>> UploadImages(HttpRequest request)
+    public static async Task<IList<Image>> UploadImages(HttpRequest request)
     {
       
       var formCollection = await request.ReadFormAsync();

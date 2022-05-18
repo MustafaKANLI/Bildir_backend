@@ -36,6 +36,8 @@ namespace Infrastructure.Persistence.Repositories
       return await _communities
         .Include(c => c.Students)
         .ThenInclude(sc => sc.Student)
+        .Include(c => c.Avatar)
+        .Include(c => c.BackgroundImage)
         .Include(c => c.Events)
         .SingleOrDefaultAsync(c => c.ApplicationUserId == applicationUserId);
     }
@@ -45,6 +47,8 @@ namespace Infrastructure.Persistence.Repositories
       return await _communities
         .Include(c => c.Students)
         .ThenInclude(sc => sc.Student)
+        .Include(c => c.Avatar)
+        .Include(c => c.BackgroundImage)
         .Include(c => c.Events)
         .Skip((pageNumber - 1) * pageSize)
         .Take(pageSize)
@@ -58,6 +62,8 @@ namespace Infrastructure.Persistence.Repositories
         .Include(c => c.Students)
         .ThenInclude(sc => sc.Student)
         .Include(c => c.Events)
+        .Include(c => c.Avatar)
+        .Include(c => c.BackgroundImage)
         .SingleOrDefaultAsync(c => c.Id == id);
     }
   }

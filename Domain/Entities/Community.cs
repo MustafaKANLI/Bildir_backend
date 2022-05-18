@@ -15,8 +15,8 @@ namespace Domain.Entities
     public string Description { get; set; }
     public ICollection<StudentCommunity> Students { get; set; }
     public ICollection<Event> Events { get; set; }
-    //public Image AvatarImage { get; set; }
-    //public Image BackgroundImage { get; set; }
+    public Image Avatar { get; set; }
+    public Image BackgroundImage { get; set; }
     public string? InstagramLink { get; set; }
     public string? TwitterLink { get; set; }
     public string? FacebookLink { get; set; }

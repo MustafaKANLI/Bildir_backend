@@ -15,8 +15,8 @@ namespace Application.Features.Communities.Queries.GetAllCommunities
     public string Description { get; set; }
     public ICollection<GetAllCommunitiesStudentViewModel> Followers { get; set; }
     public ICollection<GetAllCommunitiesEventViewModel> OrganizedEvents { get; set; }
-    //public Image AvatarImage { get; set; }
-    //public Image BackgroundImage { get; set; }
+    public Image Avatar { get; set; }
+    public Image BackgroundImage { get; set; }
     public string? InstagramLink { get; set; }
     public string? TwitterLink { get; set; }
     public string? FacebookLink { get; set; }

@@ -7,10 +7,14 @@ using Application.Features.Communities.Queries.GetCommunityById;
 using Application.Features.Communities.Queries.GetLoggedInCommunity;
 using Application.Features.Communities.Commands.UpdateCommunity;
 using Application.Features.Communities.Commands.AddSocialMediaLinkToCommunity;
+using Application.Features.Communities.Commands.AddAvatarImage;
+using Application.Features.Communities.Commands.AddBackgroundImage;
 
 //using Application.Features.Communities.Queries.GetAnnouncementById;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using WebApi.Helpers;
 
 namespace WebApi.Controllers.v1
 {
@@ -61,6 +65,23 @@ namespace WebApi.Controllers.v1
       return Ok(await Mediator.Send(command));
     }
 
+    //// POST api/<controller>/5
+    [HttpPost("AddAvatarImage/{id}")]
+    //        [Authorize]
+    public async Task<IActionResult> AddAvatarImage(int id, IFormFile file)
+    {
+      var images = await UploadImagesHelper.UploadImages(Request);
+      return Ok(await Mediator.Send(new AddAvatarImageCommand { Image = images[0], Id = id }));
+    }
+
+    //// POST api/<controller>/5
+    [HttpPost("AddBackgroundImage/{id}")]
+    //        [Authorize]
+    public async Task<IActionResult> AddBackgroundImage(int id, IFormFile file)
+    {
+      var image = await UploadImagesHelper.UploadImages(Request);
+      return Ok(await Mediator.Send(new AddBackgroundImageCommand { Image = image[0], Id = id }));
+    }
 
     // PUT api/<controller>/5
     [HttpPut("{id}")]
