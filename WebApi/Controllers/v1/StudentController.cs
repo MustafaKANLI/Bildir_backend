@@ -12,6 +12,8 @@ using Application.Features.Students.Commands.RegisterStudentToEvent;
 //using Application.Features.Communities.Queries.GetAnnouncementById;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Application.Features.Students.Commands.AbandonEvent;
+using Application.Features.Students.Commands.RemoveFollowedCommunity;
 
 namespace WebApi.Controllers.v1
 {
@@ -28,15 +30,31 @@ namespace WebApi.Controllers.v1
     // POST api/<controller>/AddFollowedCommunity
     [HttpPost("AddFollowedCommunity")]
     //        [Authorize]
-    public async Task<IActionResult> Post(AddFollowedCommunityCommand command)
+    public async Task<IActionResult> AddFollowedCommunity(AddFollowedCommunityCommand command)
     {
       return Ok(await Mediator.Send(command));
     }
     
-    // POST api/<controller>/AddFollowedCommunity
+    // POST api/<controller>/RegisterToEvent
     [HttpPost("RegisterToEvent")]
     //        [Authorize]
-    public async Task<IActionResult> Post(RegisterStudentToEventCommand command)
+    public async Task<IActionResult> RegisterToEvent(RegisterStudentToEventCommand command)
+    {
+      return Ok(await Mediator.Send(command));
+    }
+
+    // POST api/<controller>/AbandonEvent
+    [HttpPost("AbandonEvent")]
+    //        [Authorize]
+    public async Task<IActionResult> AbandonEvent(AbandonEventCommand command)
+    {
+      return Ok(await Mediator.Send(command));
+    }
+
+    // POST api/<controller>/RemoveFollowedCommunity
+    [HttpPost("RemoveFollowedCommunity")]
+    //        [Authorize]
+    public async Task<IActionResult> RemoveFollowedCommunity(RemoveFollowedCommunityCommand command)
     {
       return Ok(await Mediator.Send(command));
     }

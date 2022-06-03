@@ -1,6 +1,4 @@
 ﻿using Application.Features.Communities.Commands.CreateCommunity;
-//using Application.Features.Communities.Commands.DeleteAnnouncementById;
-//using Application.Features.Communities.Commands.UpdateAnnouncement;
 using Application.Features.Communities.Queries.GetAllCommunities;
 using Application.Features.Communities.Queries.GetCommunityByCreationKey;
 using Application.Features.Communities.Queries.GetCommunityById;
@@ -10,7 +8,6 @@ using Application.Features.Communities.Commands.AddSocialMediaLinkToCommunity;
 using Application.Features.Communities.Commands.AddAvatarImage;
 using Application.Features.Communities.Commands.AddBackgroundImage;
 
-//using Application.Features.Communities.Queries.GetAnnouncementById;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;

@@ -13,7 +13,8 @@ namespace Application.Features.Students.Queries.GetLoggedInStudent
     public string Location { get; set; }
     public string Tags { get; set; }
     public GetLoggedInStudentCommunityViewModel EventOf { get; set; }
-    public EventStates State { get; set; }
+    public string State { get; set; }
+    public string ParticipationState { get; set; }
     public DateTime Date { get; set; }
   }
 }

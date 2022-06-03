@@ -37,7 +37,12 @@ namespace Application.Features.Students.Queries.GetStudentById
           followedCommunities.Add(_mapper.Map<GetStudentByIdCommunityViewModel>(sc.Community));
 
         foreach (var se in student.Events)
-          participatedEvents.Add(_mapper.Map<GetStudentByIdEventViewModel>(se.Event));
+        {
+          var eventObj = _mapper.Map<GetStudentByIdEventViewModel>(se.Event);
+          eventObj.EventOf = _mapper.Map <GetStudentByIdCommunityViewModel> (se.Event.Community);
+          eventObj.ParticipationState = se.State.ToString();
+          participatedEvents.Add(eventObj);
+        }
 
         var studentViewModel = _mapper.Map<GetStudentByIdViewModel>(student);
         studentViewModel.FollowedCommunities = followedCommunities;

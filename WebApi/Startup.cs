@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
@@ -45,9 +46,14 @@ namespace WebApi
               o.MultipartBodyLengthLimit = int.MaxValue;
               o.MemoryBufferThreshold = int.MaxValue;
             });
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.User.AllowedUserNameCharacters = "abcçdefgğhıijklmnoöprsştuüvyzxqwABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZXQW-._@+";
+            });
             
             services.AddSwaggerExtension();
-            services.AddControllers();
+            //services.AddControllers();
             services.AddApiVersioningExtension();
             services.AddHealthChecks();
             services.AddScoped<IAuthenticatedUserService, AuthenticatedUserService>();
@@ -75,6 +81,11 @@ namespace WebApi
             app.UseSwaggerExtension();
             app.UseErrorHandlingMiddleware();
             app.UseHealthChecks("/health");
+
+            var folderName = Path.Combine("Resources", "Images");
+            var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+            if(!Directory.Exists(pathToSave))
+              Directory.CreateDirectory(pathToSave);
 
             app.UseStaticFiles();
             app.UseStaticFiles(new StaticFileOptions()

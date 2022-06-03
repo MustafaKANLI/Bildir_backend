@@ -7,6 +7,7 @@ namespace Application.Features.Communities.Queries.GetLoggedInCommunity
 {
   public class GetLoggedInCommunityViewModel
   {
+    public int Id { get; set; }
     public string CreationKey { get; set; }
     public string ApplicationUserId { get; set; }
     public bool IsKeyUsed { get; set; }

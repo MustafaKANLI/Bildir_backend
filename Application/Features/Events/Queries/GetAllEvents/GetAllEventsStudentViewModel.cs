@@ -14,6 +14,7 @@ namespace Application.Features.Events.Queries.GetAllEvents
     public string SchoolEmail { get; set; }
     public string Faculty { get; set; }
     public string Department { get; set; }
+    public string ParticipationState { get; set; }
     public string Gender { get; set; }
   }
 }

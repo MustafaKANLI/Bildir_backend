@@ -19,184 +19,6 @@ namespace Infrastructure.Persistence.Migrations
                 .HasAnnotation("ProductVersion", "3.1.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            modelBuilder.Entity("Domain.Entities.Address", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<bool>("Active")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("City")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text");
-
-                    b.Property<int?>("EventId")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime?>("LastModified")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.Property<int?>("PersonnelId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Street")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Town")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EventId")
-                        .IsUnique();
-
-                    b.HasIndex("PersonnelId");
-
-                    b.ToTable("Addresses");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Announcement", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<bool>("Active")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Attachment")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Company")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime?>("LastModified")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Letter")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("RequestDate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Announcements");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Category", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<bool>("Active")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("LastModified")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Certificate", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<bool>("Active")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime?>("LastModified")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.Property<int?>("PersonnelId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Provider")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PersonnelId");
-
-                    b.ToTable("Certificates");
-                });
-
             modelBuilder.Entity("Domain.Entities.Community", b =>
                 {
                     b.Property<int>("Id")
@@ -209,6 +31,12 @@ namespace Infrastructure.Persistence.Migrations
 
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("text");
+
+                    b.Property<int?>("AvatarId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("BackgroundImageId")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp without time zone");
@@ -251,87 +79,11 @@ namespace Infrastructure.Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AvatarId");
+
+                    b.HasIndex("BackgroundImageId");
+
                     b.ToTable("Communities");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Contact", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<bool>("Active")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Address")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("LastModified")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Contacts");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Education", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<bool>("Active")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("CollegeName")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime?>("LastModified")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Major")
-                        .HasColumnType("text");
-
-                    b.Property<int?>("PersonnelId")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PersonnelId");
-
-                    b.ToTable("Educations");
                 });
 
             modelBuilder.Entity("Domain.Entities.Event", b =>
@@ -344,8 +96,8 @@ namespace Infrastructure.Persistence.Migrations
                     b.Property<bool>("Active")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("BeginDate")
-                        .HasColumnType("timestamp without time zone");
+                    b.Property<int>("CommunityId")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp without time zone");
@@ -353,11 +105,11 @@ namespace Infrastructure.Persistence.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("text");
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("Description")
                         .HasColumnType("text");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("timestamp without time zone");
@@ -365,104 +117,46 @@ namespace Infrastructure.Persistence.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("text");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Location")
                         .HasColumnType("text");
 
-                    b.Property<string>("State")
+                    b.Property<int>("State")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Tags")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CommunityId");
 
                     b.ToTable("Events");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Inventory", b =>
+            modelBuilder.Entity("Domain.Entities.Image", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<bool>("Active")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("LastModified")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Inventories");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Personnel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<bool>("Active")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Avatar")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("BirthDate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("text");
 
                     b.Property<int?>("EventId")
                         .HasColumnType("integer");
 
-                    b.Property<string>("FirstName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Gender")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("LastModified")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("text");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("PhoneNumber")
+                    b.Property<string>("Path")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.HasIndex("EventId");
 
-                    b.ToTable("Personnels");
+                    b.ToTable("Images");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Product", b =>
+            modelBuilder.Entity("Domain.Entities.Notification", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -472,8 +166,8 @@ namespace Infrastructure.Persistence.Migrations
                     b.Property<bool>("Active")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("Barcode")
-                        .HasColumnType("text");
+                    b.Property<int>("CommunityId")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp without time zone");
@@ -484,7 +178,42 @@ namespace Infrastructure.Persistence.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
-                    b.Property<int?>("InventoryId")
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CommunityId");
+
+                    b.ToTable("Notifications");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Report", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<int>("EventId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime?>("LastModified")
@@ -493,68 +222,22 @@ namespace Infrastructure.Persistence.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("text");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
+                    b.Property<int>("State")
+                        .HasColumnType("integer");
 
-                    b.Property<decimal>("Rate")
-                        .HasColumnType("decimal(18,6)");
+                    b.Property<int>("StudentId")
+                        .HasColumnType("integer");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("InventoryId");
-
-                    b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Project", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<bool>("Active")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime?>("LastModified")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Position")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Responsibility")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("TeamSize")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Technology")
+                    b.Property<string>("Title")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Projects");
+                    b.HasIndex("EventId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("Reports");
                 });
 
             modelBuilder.Entity("Domain.Entities.Student", b =>
@@ -620,94 +303,103 @@ namespace Infrastructure.Persistence.Migrations
                     b.ToTable("StudentCommunity");
                 });
 
-            modelBuilder.Entity("Domain.Entities.WorkHistory", b =>
+            modelBuilder.Entity("Domain.Entities.StudentEvent", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                    b.Property<int>("StudentId")
+                        .HasColumnType("integer");
 
-                    b.Property<bool>("Active")
+                    b.Property<int>("EventId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool?>("Liked")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("CompanyName")
-                        .HasColumnType("text");
+                    b.Property<int>("State")
+                        .HasColumnType("integer");
 
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp without time zone");
+                    b.HasKey("StudentId", "EventId");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text");
+                    b.HasIndex("EventId");
 
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime?>("LastModified")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Position")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("WorkHistory");
+                    b.ToTable("EventParticipations");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Address", b =>
+            modelBuilder.Entity("Domain.Entities.Community", b =>
+                {
+                    b.HasOne("Domain.Entities.Image", "Avatar")
+                        .WithMany()
+                        .HasForeignKey("AvatarId");
+
+                    b.HasOne("Domain.Entities.Image", "BackgroundImage")
+                        .WithMany()
+                        .HasForeignKey("BackgroundImageId");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Event", b =>
+                {
+                    b.HasOne("Domain.Entities.Community", "Community")
+                        .WithMany("Events")
+                        .HasForeignKey("CommunityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Entities.Image", b =>
                 {
                     b.HasOne("Domain.Entities.Event", null)
-                        .WithOne("Venue")
-                        .HasForeignKey("Domain.Entities.Address", "EventId");
-
-                    b.HasOne("Domain.Entities.Personnel", null)
-                        .WithMany("Addresses")
-                        .HasForeignKey("PersonnelId");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Certificate", b =>
-                {
-                    b.HasOne("Domain.Entities.Personnel", null)
-                        .WithMany("Certificates")
-                        .HasForeignKey("PersonnelId");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Education", b =>
-                {
-                    b.HasOne("Domain.Entities.Personnel", null)
-                        .WithMany("Educations")
-                        .HasForeignKey("PersonnelId");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Personnel", b =>
-                {
-                    b.HasOne("Domain.Entities.Event", null)
-                        .WithMany("Participants")
+                        .WithMany("Images")
                         .HasForeignKey("EventId");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Product", b =>
+            modelBuilder.Entity("Domain.Entities.Notification", b =>
                 {
-                    b.HasOne("Domain.Entities.Inventory", null)
-                        .WithMany("Products")
-                        .HasForeignKey("InventoryId");
+                    b.HasOne("Domain.Entities.Community", "Community")
+                        .WithMany()
+                        .HasForeignKey("CommunityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Entities.Report", b =>
+                {
+                    b.HasOne("Domain.Entities.Event", "Event")
+                        .WithMany()
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Entities.StudentCommunity", b =>
                 {
                     b.HasOne("Domain.Entities.Community", "Community")
-                        .WithMany("Followers")
+                        .WithMany("Students")
                         .HasForeignKey("CommunityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Student", "Student")
-                        .WithMany("FollowedCommunities")
+                        .WithMany("Communities")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Entities.StudentEvent", b =>
+                {
+                    b.HasOne("Domain.Entities.Event", "Event")
+                        .WithMany("Students")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Student", "Student")
+                        .WithMany("Events")
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
