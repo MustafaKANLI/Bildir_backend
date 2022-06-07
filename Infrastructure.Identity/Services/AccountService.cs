@@ -122,7 +122,7 @@ namespace Infrastructure.Identity.Services
       }
     }
 
-    public async Task<Response<string>> RegisterCommunityAsync(CommunityRegisterRequest request, string origin, IMediator Mediator)
+    public async Task<Response<int>> RegisterCommunityAsync(CommunityRegisterRequest request, string origin, IMediator Mediator)
     {
       /*
        Check if the CreationKey is valid
@@ -147,7 +147,7 @@ namespace Infrastructure.Identity.Services
         if (result.Succeeded)
         {
           await _userManager.AddToRoleAsync(user, Roles.Community.ToString());
-          var verificationUri = await SendVerificationEmail(user, origin);
+          //var verificationUri = await SendVerificationEmail(user, origin);
           // Attach Email Service here and configure it via appsettings
           //await _emailService.SendAsync(new Application.DTOs.Email.EmailRequest() { From = "mail@codewithmukesh.com", To = user.Email, Body = $"Please confirm your account by visiting this URL {verificationUri}", Subject = "Confirm Registration" });
 
@@ -164,7 +164,8 @@ namespace Infrastructure.Identity.Services
           });
 
           if (!updateCommunityResult.Succeeded) throw new ApiException($"Community could not be updated");
-          return new Response<string>(user.Id, message: $"User Registered. Please confirm your account by visiting this URL {verificationUri}");
+          // return new Response<string>(user.Id, message: $"User Registered. Please confirm your account by visiting this URL {verificationUri}");
+          return new Response<int>(community.Id, message: $"User Registered.");
         }
         else
         {
@@ -183,6 +184,7 @@ namespace Infrastructure.Identity.Services
       /*Check if mail is school mail*/
       //if(!request.SchoolEmail.EndsWith("akdeniz.edu.tr")) throw new ApiException($"Email adress is not valid");
 
+      
       var user = new ApplicationUser
       {
         Email = request.SchoolEmail,
@@ -196,7 +198,7 @@ namespace Infrastructure.Identity.Services
         if (result.Succeeded)
         {
           await _userManager.AddToRoleAsync(user, Roles.Student.ToString());
-          var verificationUri = await SendVerificationEmail(user, origin);
+          //var verificationUri = await SendVerificationEmail(user, origin);
           // Attach Email Service here and configure it via appsettings
           //await _emailService.SendAsync(new Application.DTOs.Email.EmailRequest() { From = "mail@codewithmukesh.com", To = user.Email, Body = $"Please confirm your account by visiting this URL {verificationUri}", Subject = "Confirm Registration" });
 
@@ -213,7 +215,8 @@ namespace Infrastructure.Identity.Services
           });
 
           if (!createStudentResult.Succeeded) throw new ApiException($"Student could not be created");
-          return new Response<string>(user.Id, message: $"User Registered. Please confirm your account by visiting this URL {verificationUri}");
+          // return new Response<string>(user.Id, message: $"User Registered. Please confirm your account by visiting this URL {verificationUri}");
+          return new Response<string>(user.Id, message: $"User Registered.");
         }
         else
         {
